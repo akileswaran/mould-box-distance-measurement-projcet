@@ -1,7 +1,8 @@
 # mould-box-distance-measurement-projcet
 > This Project is still a work in progress
 - This project involves the development of a computer vision algorithm to measure the distance between two runners in an array of mould boxes and a program to relay the measured distance to a Siemens PLC using modbus communication protocol. 
-Overview of the algorithm
+
+**Overview of the algorithm**
 - Capture an image from the camera feed (will be changed in future to work in realtime)
 - Perform preprocessing on the image to reduce computing time
 - Create an edge map using morphological operations and canny edge detection
