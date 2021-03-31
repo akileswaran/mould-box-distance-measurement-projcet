@@ -16,4 +16,8 @@
 - two object with the coordinates are created.
 - the euclidean distance between the centroids is computed and then converted to the distance in pixels to distance in units
 
+
+![image](https://user-images.githubusercontent.com/62331013/113076862-3bf3f180-91d0-11eb-847f-f0b6fd40f9ce.png)
+
+
 The next steps in the project are to make the program real time (measure distance between object in video feed), complete the modbus server to relay the data to the PLC.
