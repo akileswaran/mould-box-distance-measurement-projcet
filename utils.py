@@ -136,9 +136,7 @@ def probableValue(array):
         try:
             average = sum(array) / len(array)
             print("average number",average)
-            for element in range(len(array)):
-                if array[element] == average:
-                    return element
+            return average
         except:
             print("No contours found in the image. Adjust the camera to bring the runners in the field of view of the camera")
 

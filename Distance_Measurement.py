@@ -33,7 +33,9 @@ if __name__ =='__main__':
                         array.append(D)
                         lastD = D
 
-            image_number = utils.probableValue(array)
+            measured_distance = utils.probableValue(array)
+            modbusclient.writetoserver(measured_distance)
+
 
             # output = cv2.imread('output'+str(image_number)+'.jpg')
             # output = cv2.imread('output.jpg')
