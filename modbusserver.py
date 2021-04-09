@@ -1,5 +1,3 @@
-#!/bin/python
-
 from pyModbusTCP.server import ModbusServer, DataBank
 from time import sleep
 from random import uniform
@@ -13,9 +11,9 @@ try:
     print("Server is online")
     state = [0]
     while True:
-        DataBank.set_words(0, [int(uniform(0, 100))])
-        if state != DataBank.get_words(1):
-            state = DataBank.get_words(1)
+        # DataBank.set_words(0, [int(1)])
+        if state != DataBank.get_words(0):
+            state = DataBank.get_words(0)
             print("Value of Register 1 has changed to " +str(state))
         sleep(0.5)
 
