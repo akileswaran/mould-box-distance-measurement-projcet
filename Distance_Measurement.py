@@ -13,7 +13,7 @@ import modbusclient
 if __name__ =='__main__':
 
 #####################################################################################
-    switch = 0
+    switch = False
 
     while True:
         D = 0
@@ -24,8 +24,8 @@ if __name__ =='__main__':
         # start = input()
         start = modbusclient.readformserver()
         # print(type(start))
-        if start and switch == 0:
-            switch+=1
+        if start and switch == False:
+            switch = True
             for i in range(50):
                 D = utils.getcontours()
                 if D != lastD and D is not None:
@@ -48,7 +48,7 @@ if __name__ =='__main__':
     #         else: continue
     # cv2.destroyAllWindows()
         if not start:
-            switch = 0
+            switch = False
 ######################################################################################
 
 
