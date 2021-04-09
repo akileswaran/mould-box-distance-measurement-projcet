@@ -19,4 +19,16 @@
 
 ![image](https://user-images.githubusercontent.com/62331013/113076862-3bf3f180-91d0-11eb-847f-f0b6fd40f9ce.png)
 
+This project is originally developed to communicate with a PLC over modbus but if you would like to try out the application follow the steps below:
+- Open and run the modbusserver.py script in your favorite ide. Personaly i prefer idle because it is simple to use. (In the original setup the PLC acts as a server and a client which can READ and WRITE data to registers of the modbus network. In our case if we want to WRITE data we need a separate client that is connected to the same server which is exactly what we will do in step 3)
+- Open the Distance_measurement.exe file (it is inside the dist folder)(now the program is waiting for input so lets give it an input)
+- Open command prompt and execute the following commands one by one 
+  - python
+  - pip install pyModbusTCP
+  - from pyModbusTCP.client import ModbusClient
+  - client = ModbusClient(host="localhost", port=12345)
+  - client.open()
+  - client.write_single_register(0,1)
+  - once you get the distance value type client.write_single_register(0,0)
+  - alternate between the last two steps and you can keep measuring again and again
 
