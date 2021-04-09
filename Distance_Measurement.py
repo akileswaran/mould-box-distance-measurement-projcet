@@ -1,19 +1,10 @@
-import cv2
-from scipy.spatial import distance as dist
-from imutils import perspective
-from imutils import contours
-import numpy as np
-import argparse
-import imutils
 import utils
 import modbusclient
-
-
 
 if __name__ =='__main__':
 
 #####################################################################################
-    switch = False
+    switch = True
 
     while True:
         D = 0
@@ -22,21 +13,24 @@ if __name__ =='__main__':
         dictionary = {}
 
         # start = input()
+        # reads boolean the data (1 or 0) from the server and saves it is a variable
         start = modbusclient.readformserver()
         # print(type(start))
-        if start and switch == False:
-            switch = True
+        if start and switch == True:
+            # To prevent continuous execution switch is set to false
+            switch = False
+            # loop through the getcountour function 50 times in order to get accurate results
             for i in range(50):
                 D = utils.getcontours()
                 if D != lastD and D is not None:
+                    # Save the measured value in a array only if it is above 200mm i.e this is done to remove outliers
                     if D >= 200:
                         array.append(D)
                         lastD = D
-
+            # Reads the final output value
             measured_distance = utils.probableValue(array)
+            # Writes the value back to the server
             modbusclient.writetoserver(measured_distance)
-
-
             # output = cv2.imread('output'+str(image_number)+'.jpg')
             # output = cv2.imread('output.jpg')
             # output = cv2.imread('C:/Users/akile/PycharmProjects/test/images/output.jpg')
@@ -48,7 +42,7 @@ if __name__ =='__main__':
     #         else: continue
     # cv2.destroyAllWindows()
         if not start:
-            switch = False
+            switch = True
 ######################################################################################
 
 

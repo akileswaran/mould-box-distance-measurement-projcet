@@ -3,18 +3,19 @@ from scipy.spatial import distance as dist
 from imutils import perspective
 from imutils import contours
 import numpy as np
-import argparse
 import imutils
-import os
 
 
 def midpoint(ptA, ptB):
     return ((ptA[0] + ptB[0]) * 0.5, (ptA[1] + ptB[1]) * 0.5)
 
+
 cap = cv2.VideoCapture(0)
 cap.set(10, 150)
 cap.set(3, 1920)
 cap.set(4, 1080)
+
+
 def getcontours():
     # load the image, convert it to grayscale, and blur it slightly
     ret, image = cap.read()
@@ -114,30 +115,33 @@ def getcontours():
             # cv2.imwrite('output' + str(image_number) + '.jpg', orig)
             # image_number += 1
             # cv2.imwrite('output.jpg',orig)
-            cv2.imshow('output',orig)
+            cv2.imshow('output', orig)
             cv2.waitKey(300)
             return measured_distance
+
 
 def probableValue(array):
     dictionary = {}
     # print(array)
+    # Looping through all the distance values measured
     for elem in array:
         if array.count(elem) > 1:
+            # If there are repeating numbers saving the count of each repetition in a dictionary
             dictionary[elem] = array.count(elem)
     # print(dictionary)
     if bool(dictionary):
-
+        # Finding the value with the maximum number of repetition in the dictionary
         max_key = max(dictionary, key=dictionary.get)
-        print("repeating number",max_key)
+        print("repeating number", max_key)
         for element in range(len(array)):
             if array[element] == max_key:
-                return element
+                return max_key
     else:
         try:
+            # If there are no repeating numbers then take average of all the values in the array
             average = sum(array) / len(array)
-            print("average number",average)
+            print("average number", average)
             return average
         except:
-            print("No contours found in the image. Adjust the camera to bring the runners in the field of view of the camera")
-
-
+            print("No contours found in the image. Adjust the camera to bring the runners in the field of view of the "
+                  "camera")

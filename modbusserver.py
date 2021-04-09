@@ -1,6 +1,5 @@
 from pyModbusTCP.server import ModbusServer, DataBank
 from time import sleep
-from random import uniform
 
 # Create an instance of ModbusServer
 server = ModbusServer("localhost", 12345, no_block=True)
