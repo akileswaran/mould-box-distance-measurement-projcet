@@ -1,5 +1,4 @@
 # mould-box-distance-measurement-projcet
-> This Project is still a work in progress
 - This project involves the development of a computer vision algorithm to measure the distance between two runners in an array of mould boxes and a program to relay the measured distance to a Siemens PLC using modbus communication protocol. 
 
 **Overview of the algorithm**
@@ -31,4 +30,4 @@ This project is originally developed to communicate with a PLC over modbus but i
   - client.write_single_register(0,1)
   - once you get the distance value type client.write_single_register(0,0)
   - alternate between the last two steps and you can keep measuring again and again
-
+> This Project is still a work in progress
