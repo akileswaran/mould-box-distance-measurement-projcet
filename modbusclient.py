@@ -5,7 +5,7 @@ boolvalue= True
 client = ModbusClient(host="localhost", port=12345)
 
 
-def modbusclient():
+def readformserver():
 
     if client.open():
         valuefromserver = client.read_holding_registers(0)

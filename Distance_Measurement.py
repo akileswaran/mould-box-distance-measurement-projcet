@@ -22,7 +22,7 @@ if __name__ =='__main__':
         dictionary = {}
 
         # start = input()
-        start = modbusclient.modbusclient()
+        start = modbusclient.readformserver()
         # print(type(start))
         if start and switch == 0:
             switch+=1
