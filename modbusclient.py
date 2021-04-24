@@ -23,9 +23,6 @@ def readformserver():
 
 
 def writetoserver (value):
-    if client.open():
-        try:
-            # writes the measured value to the server at the register 1
-            client.write_single_register(1,int(value))
-        except:
-            print("no objects to measure")
+    #writes the measured value to the server at the register 1
+
+    client.write_single_register(1, int(round(value, 2)*100))
