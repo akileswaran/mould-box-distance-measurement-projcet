@@ -15,8 +15,7 @@ cap.set(10, 150)
 cap.set(3, 1920)
 cap.set(4, 1080)
 
-
-def getcontours():
+def getimage():
     # load the image, convert it to grayscale, and blur it slightly
     ret, image = cap.read()
     r = 250.0 / image.shape[0]
@@ -31,8 +30,11 @@ def getcontours():
     edged = cv2.dilate(edged, None, iterations=1)
     edged = cv2.erode(edged, None, iterations=1)
     # edged = medfilt2(edged,[10 10],'symmetric');
+    return image,edged
+
+def getcontours(imagepointer,edgedpointer):
     # find contours in the edge map
-    cnts, a = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cnts, a = cv2.findContours(edgedpointer.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # cnts = cnts[0] #if imutils.is_cv2() else cnts[1]
     # print (cnts)
@@ -84,7 +86,7 @@ def getcontours():
             refObj = (box, (cX, cY), D / 80)
             continue
         # draw the contours on the image
-        orig = image.copy()
+        orig = imagepointer.copy()
         # one = cv2.drawContours(orig, [box.astype("int")], -1, (0, 255, 0), 2)
         # two = cv2.drawContours(orig, [refObj[0].astype("int")], -1, (0, 255, 0), 2)
 
@@ -115,8 +117,8 @@ def getcontours():
             # cv2.imwrite('output' + str(image_number) + '.jpg', orig)
             # image_number += 1
             # cv2.imwrite('output.jpg',orig)
-            cv2.imshow('output', orig)
-            cv2.waitKey(300)
+            # cv2.imshow('output', orig)
+            # cv2.waitKey(300)
             return measured_distance
 
 
